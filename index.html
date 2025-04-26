@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>민혁위키 2025</title>
+  <link rel="stylesheet" href="./dist/output.css">
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+        <h1 id="title" class="italic text-center p-7 text-xl text-blue-600 font-['Cal_Sans']">minhyeokwiki</h1>
+    </header>
+
+    <nav>
+        <ul class="flex space-x-20 text-center justify-center p-4">
+            <button @click="currentPage = 'Home'" class="font-['Cal_Sans'] text-blue-600 hover:text-blue-600/70">HOME</button>
+            <button @click="currentPage = 'About'" class="font-['Cal_Sans'] text-blue-600 hover:text-blue-600/70">ABOUT ME</button>
+            <button @click="currentPage = 'Contact'" class="font-['Cal_Sans'] text-blue-600 hover:text-blue-600/70">CONTACT</button>
+        </ul>
+    </nav>
+
+    <main class="text-center p-4">
+      <component :is="currentPage"></component>
+    </main>
+
+    <footer class="text-center text-sm/6 text-gray-500">
+        <p>© 2025 민혁위키. All rights reserved.</p> 
+    </footer>
+
+    
+  <script>
+    // Vue 컴포넌트 정의
+    const Home = {
+      template: `<div><h2 class="text-xl">Home</h2><p>환영합니다! 민혁위키 홈입니다.</p></div>`
+    };
+    const About = {
+      template: `<div><h2 class="text-2xl">About Me</h2><p>여기는 자기소개 페이지입니다.</p></div>`
+    };
+    const Contact = {
+      template: `<div><h2 class="text-2xl">Contact</h2><p>여기는 연락처 페이지입니다.</p></div>`
+    };
+
+    // Vue 앱 생성
+    const app = Vue.createApp({
+      data() {
+        return {
+          currentPage: 'Home' // 기본 페이지
+        }
+      },
+      components: {
+        Home, About, Contact
+      },
+      mounted() {
+        // 타이틀 호버 이벤트 처리 (네 원래 코드)
+        const header = document.getElementById("title");
+        const originalText = header.innerText;
+
+        header.addEventListener('mouseover', function() {
+          header.innerText = '----2025----';
+        });
+        header.addEventListener('mouseout', function() {
+          header.innerText = originalText;
+        });
+      }
+    });
+
+    app.mount('#app');
+  </script>
+
+
+</body>
+</html>
